@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<variables>
+  <item Name=" KM"/>
+  <item Name="KM_N"/>
+  <item Name="KM_1"/>
+  <item Name="KM_2"/>
+  <item Name="KM_3"/>
+  <item Name="KM_4"/>
+  <item Name="KM_5"/>
+  <item Name="KM_T"/>
+  <item Name=" VALOR"/>
+  <item Name="VALOR_N"/>
+  <item Name="VALOR_1"/>
+  <item Name="VALOR_2"/>
+  <item Name="VALOR_3"/>
+  <item Name="VALOR_4"/>
+  <item Name="VALOR_5"/>
+  <item Name="VALOR_T"/>
+  <item Name=" QTD"/>
+  <item Name="QT_N"/>
+  <item Name="QT_1"/>
+  <item Name="QT_2"/>
+  <item Name="QT_3"/>
+  <item Name="QT_4"/>
+  <item Name="QT_5"/>
+  <item Name="QT_T"/>
+  <item Name=" CUSTO"/>
+  <item Name="CUSTO_N"/>
+  <item Name="CUSTO_1"/>
+  <item Name="CUSTO_2"/>
+  <item Name="CUSTO_3"/>
+  <item Name="CUSTO_4"/>
+  <item Name="CUSTO_5"/>
+  <item Name="CUSTO_T"/>
+  <item Name=" MEDIA"/>
+  <item Name="MK_N"/>
+  <item Name="MK_1"/>
+  <item Name="MK_2"/>
+  <item Name="MK_3"/>
+  <item Name="MK_4"/>
+  <item Name="MK_5"/>
+  <item Name="MK_T"/>
+</variables>

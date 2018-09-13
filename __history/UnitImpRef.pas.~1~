@@ -1,0 +1,136 @@
+unit UnitImpRef;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBTables, StdCtrls, Buttons, DB, ADODB, Grids, DBGrids;
+
+type
+  TFormImpRef = class(TForm)
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    QrMovRef: TADOQuery;
+    BitBtn1: TBitBtn;
+    Query1: TQuery;
+    QrPneu: TADOQuery;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormImpRef: TFormImpRef;
+
+implementation
+
+uses UnitServerPai;
+
+{$R *.dfm}
+
+procedure TFormImpRef.BitBtn1Click(Sender: TObject);
+Var BORREF, DESREF,PneuAtual,Sit,novavida,VidaVelha : String;
+begin
+With Query1 do
+    Begin
+        Open;
+        First;
+        Repeat
+        if not eof then
+              begin
+                   PneuAtual:=Query1.FieldByName('Num_Pneu_Reformado').AsString;
+                   WITH QrPneu do
+                        begin
+                              Close;
+                              Sql.Clear;
+                              Sql.Add('Select * from tb_pnPneus where Tcp_Coligada = ' + QuotedStr(Pai.QrColigadas.FieldByName('Cod_Coligada').AsString));
+                              Sql.Add('And Tcp_Fog = ' + QuotedStr(PneuAtual));
+                              Open;
+                              if NOT eof then
+                                     begin
+                                          if Query1.FieldByName('Data_Reforma').AsString = '' then
+                                                  Begin
+                                                          Sit:='0';
+                                                          VidaVelha:=Query1.FieldByName('Idade_Reforma').AsString;
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = 'N' then
+                                                                  NovaVida:='1';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '1' then
+                                                                  NovaVida:='2';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '2' then
+                                                                  NovaVida:='3';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '3' then
+                                                                  NovaVida:='4';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '4' then
+                                                                  NovaVida:='5'
+                                                  End
+                                                  else
+                                                  Begin
+                                                          NovaVida:=Query1.FieldByName('Idade_Reforma').AsString  ;
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '5' then
+                                                                  VidaVelha:='4';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '4' then
+                                                                  VidaVelha:='3';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '3' then
+                                                                  VidaVelha:='2';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '2' then
+                                                                  VidaVelha:='1';
+                                                          if Query1.FieldByName('Idade_Reforma').AsString = '1' then
+                                                                  VidaVelha:='N';
+                                                          Sit:='1';
+                                                  End;
+                                          WITH QrMOvRef do
+                                                begin
+                                                        Open;
+                                                        BORREF:='';
+                                                        DESREF:='';
+                                                        Insert;
+                                                        if QUERY1.FieldByName('TIPO_BORRACHA').AsString = '001' then BORREF:='1';
+                                                        if QUERY1.FieldByName('TIPO_BORRACHA').AsString = '002' then BORREF:='3';
+                                                        if QUERY1.FieldByName('TIPO_BORRACHA').AsString = '003' then BORREF:='4';
+                                                        if QUERY1.FieldByName('TIPO_BORRACHA').AsString = '004' then BORREF:='2';
+                                                        QrMOvRef.FieldByName('Rmov_BorRef').AsString:=BORREF;
+
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '001' THEN DESREF:='4';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '002' THEN DESREF:='6';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '003' THEN DESREF:='7';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '004' THEN DESREF:='5';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '006' THEN DESREF:='1';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '007' THEN DESREF:='2';
+                                                        IF Query1.FieldByName('Desenho_REFORMA').AsString = '009' THEN DESREF:='8';
+                                                        QrMOvRef.FieldByName('Rmov_DesRef').AsString:= DESREF;
+
+
+
+                                                        QrMOvRef.FieldByName('Rmov_Pneu').AsString:=QrPneu.FieldByName('Tcp_Cod').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_Fog').AsString:=QrPneu.FieldByName('Tcp_Fog').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_Coligada').AsString:=pai.QrColigadas.FieldByName('Cod_Coligada').AsString;                                                        QrMOvRef.FieldByName('Rmov_Vida').AsString:=Query1.FieldByName('IDADE_REFORMA').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_REF').AsString:=Query1.FieldByName('Reformadora').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_DtEnv').AsString:=Query1.FieldByName('Data_Envio').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_DtRef').AsString:=Query1.FieldByName('Data_REFORMA').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_NF').AsString:=Query1.FieldByName('NOTA_FISCAL').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_VALOR').AsString:=FormatFloat('0.00',Query1.FieldByName('valor_reforma').AsFloat);
+//                                                        QrMOvRef.FieldByName('Rmov_DesRef').AsString:=Query1.FieldByName('Desenho_REFORMA').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_TipRef').AsString:=Query1.FieldByName('Tipo_Reforma').AsString;
+                                                        QrMOvRef.FieldByName('Rmov_Sit').AsString:=Sit;
+                                                        QrMOvRef.FieldByName('Rmov_Vida').AsString:=VidaVelha;
+                                                        QrMOvRef.FieldByName('Rmov_NovaVida').AsString:=NovaVida;
+                                                        QrMOvRef.Post;
+                                                end;
+                                     end;
+                        end;
+              end;
+        Next;
+        Until eof ;
+    End;
+
+end;
+
+procedure TFormImpRef.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Action:=cafree;
+end;
+
+end.

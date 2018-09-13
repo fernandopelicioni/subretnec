@@ -1,0 +1,9 @@
+SELECT 
+IDMov,CodFilial,CodLoc,CODLOCDESTINO,SERIE,NUMEROMOV,CODTMV,TIPO,STATUS,
+DataEmissao,movimpresso,docimpresso,fatimpressa,VALORBRUTO,VALORLIQUIDO,
+VALOROUTROS,CODCFOAUX,CODCCUSTO,CODVEN1,CODUSUARIO,CODFILIALDESTINO,CODCOLCXA,
+CODEVENTO,StatusExporTCont,CODLOTE,HorUltimaAlteracao,USUARIOCRIACAO,DATACRIACAO,
+ValorBrutoInterno,DataContabilizacao,SequencialEstoque,IntegraAplicacao,Datalancamento,
+CodMoeValorLiquido,CONTABILIZADOPORTOTAL,DATAMOVIMENTO,ReciboNfeStatus,CodColcFoAux,
+Vrbaseinssoutraempresa,IndUsoObj,FlagProcessado,IntegraDOAutoMAcao
+FROM TMOV

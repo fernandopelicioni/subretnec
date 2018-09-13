@@ -1,0 +1,33 @@
+unit UnitInfoComponentes;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, pngimage, ExtCtrls, jpeg;
+
+type
+  TFormInfoComponentes = class(TForm)
+    Panel2: TPanel;
+    Image5: TImage;
+    Image14: TImage;
+    procedure Image5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormInfoComponentes: TFormInfoComponentes;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormInfoComponentes.Image5Click(Sender: TObject);
+begin
+close;
+end;
+
+end.

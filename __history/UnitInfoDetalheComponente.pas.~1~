@@ -1,0 +1,26 @@
+unit UnitInfoDetalheComponente;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, pngimage, ExtCtrls;
+
+type
+  TFormInfoDetalhesComponentes = class(TForm)
+    Panel2: TPanel;
+    Image5: TImage;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormInfoDetalhesComponentes: TFormInfoDetalhesComponentes;
+
+implementation
+
+{$R *.dfm}
+
+end.

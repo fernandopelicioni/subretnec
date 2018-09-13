@@ -1,0 +1,54 @@
+unit UtFormRelatorioCurvaSaidaPrd;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TFormRelatorioCurvaSaidaProdutos = class(TForm)
+    Panel1: TPanel;
+    Image5: TImage;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Image1: TImage;
+    Label3: TLabel;
+    Label4: TLabel;
+    SpeedButton2: TSpeedButton;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    CbGrupo: TDBLookupComboBox;
+    CbSubGrupo: TDBLookupComboBox;
+    RadioGroup1: TRadioGroup;
+    RadioGroup2: TRadioGroup;
+    DTSUBGRUPO: TDataSource;
+    QrSubGrupo: TFDQuery;
+    DTGRUPOS: TDataSource;
+    QrGrupos: TFDQuery;
+    procedure Image5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormRelatorioCurvaSaidaProdutos: TFormRelatorioCurvaSaidaProdutos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormRelatorioCurvaSaidaProdutos.Image5Click(Sender: TObject);
+begin
+close;
+end;
+
+end.

@@ -1,0 +1,143 @@
+object FormAbreCaixaBalcao: TFormAbreCaixaBalcao
+  Left = 0
+  Top = 0
+  AlphaBlend = True
+  AlphaBlendValue = 215
+  BorderIcons = [biSystemMenu]
+  Caption = 'Abertura de Caixa (Modo Balc'#227'o) := Totvs  >< Genoma'
+  ClientHeight = 262
+  ClientWidth = 529
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI Light'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 21
+  object GroupBox1: TGroupBox
+    Left = 8
+    Top = 8
+    Width = 521
+    Height = 177
+    Caption = 'Informa'#231#245'es do Caixa'
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 24
+      Top = 54
+      Width = 78
+      Height = 17
+      Caption = 'Data do Caixa:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Light'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 24
+      Top = 114
+      Width = 113
+      Height = 17
+      Caption = 'Estoque Dispon'#237'veis:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Light'
+      Font.Style = []
+      ParentFont = False
+    end
+    object DBText1: TDBText
+      Left = 189
+      Top = 30
+      Width = 54
+      Height = 13
+      AutoSize = True
+      DataField = 'DES_COLIGADA'
+      DataSource = DtColigada
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 16744448
+      Font.Height = -11
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 120
+      Top = 24
+      Width = 63
+      Height = 21
+      Caption = 'Coligada:'
+    end
+    object EditData: TDateTimePicker
+      Left = 20
+      Top = 75
+      Width = 186
+      Height = 27
+      Date = 40379.577279016200000000
+      Time = 40379.577279016200000000
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnKeyPress = EditDataKeyPress
+    end
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 20
+      Top = 135
+      Width = 481
+      Height = 27
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      KeyField = 'CODLOC'
+      ListField = 'NOME'
+      ListSource = DtAlmoxarifado
+      ParentFont = False
+      TabOrder = 1
+      OnKeyPress = DBLookupComboBox1KeyPress
+    end
+  end
+  object Button1: TButton
+    Left = 213
+    Top = 180
+    Width = 156
+    Height = 81
+    Caption = 'Entrar'
+    ImageIndex = 6
+    Images = pai.ImageList1
+    TabOrder = 1
+    OnClick = SpeedButton1Click
+  end
+  object Button2: TButton
+    Left = 375
+    Top = 180
+    Width = 156
+    Height = 81
+    Caption = 'Cancelar'
+    ImageIndex = 3
+    Images = pai.ImageList1
+    TabOrder = 2
+    OnClick = SpeedButton2Click
+  end
+  object DtAlmoxarifado: TDataSource
+    DataSet = pai.QrAlmoxarifados
+    Left = 384
+    Top = 8
+  end
+  object DtColigada: TDataSource
+    DataSet = pai.QrColigadas
+    Left = 416
+    Top = 80
+  end
+end

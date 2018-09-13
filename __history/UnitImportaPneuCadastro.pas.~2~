@@ -1,0 +1,131 @@
+unit UnitImportaPneuCadastro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, DB, ADODB, StdCtrls, Buttons;
+
+type
+  TFormImportaCadPn = class(TForm)
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    BitBtn1: TBitBtn;
+    QrPneus: TADOQuery;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormImportaCadPn: TFormImportaCadPn;
+
+implementation
+
+uses UnitServerPai;
+
+{$R *.dfm}
+
+procedure TFormImportaCadPn.BitBtn1Click(Sender: TObject);
+var LOCALPNEU,pneuatual:string;
+MARCA, medida, desenho : STRING;
+begin
+With Query1 do
+    Begin
+        Open;
+        First;
+        Repeat
+        if not eof then
+              begin
+                   PneuAtual:=Query1.FieldByName('T_Numero_Fogo').AsString;
+                   WITH QrPneus do
+                        begin
+                             Close;
+                               Sql.Clear;
+                                Sql.Add('Select * from tb_pnPneus where Tcp_Coligada = ' + QuotedStr('2'));
+                                 Sql.Add('And Tcp_Fog = ' + QuotedStr(PneuAtual));
+                             Open;
+                             if eof then
+                                  begin
+                                        Insert;
+                                        MARCA:='';
+                                        MEDIDA:='';
+                                        DESENHO:='';
+                                          // CASE
+                                        if Query1.FieldByName('T_Marca').AsString = '001' then Marca:='2';
+                                        if Query1.FieldByName('T_Marca').AsString = '002' then Marca:='1';
+                                        if Query1.FieldByName('T_Marca').AsString = '003' then Marca:='3';
+                                        if Query1.FieldByName('T_Marca').AsString = '004' then Marca:='6';
+                                        if Query1.FieldByName('T_Marca').AsString = '005' then Marca:='7';
+                                        if Query1.FieldByName('T_Marca').AsString = '006' then Marca:='5';
+                                        if Query1.FieldByName('T_Marca').AsString = '009' then Marca:='9';
+                                        if Query1.FieldByName('T_Marca').AsString = '010' then Marca:='4';
+                                        if Query1.FieldByName('T_Marca').AsString = '011' then Marca:='8';
+                                        if Query1.FieldByName('T_Marca').AsString = '012' then Marca:='11';
+                                        if Query1.FieldByName('T_Marca').AsString = '013' then Marca:='12';
+                                        if Query1.FieldByName('T_Marca').AsString = '014' then Marca:='2';
+                                        if Query1.FieldByName('T_Marca').AsString = '007' then Marca:='2';
+                                            QrPneus.FieldByName('Tcp_Marca').AsString:=MARCA;
+
+                                      // medidas
+                                        if Query1.FieldByName('T_MODELO').AsString = '001' then medida:='3';
+                                        if Query1.FieldByName('T_MODELO').AsString = '002' then medida:='4';
+                                        if Query1.FieldByName('T_MODELO').AsString = '003' then medida:='1';
+                                           QrPneus.FieldByName('Tcp_Medida').AsString:=medida;
+                                     // DESENHOS
+                                        if Query1.FieldByName('T_Desenho').AsString = '006' then Desenho:='8';
+                                        if Query1.FieldByName('T_Desenho').AsString = '007' then Desenho:='6';
+                                        if Query1.FieldByName('T_Desenho').AsString = '008' then Desenho:='2';
+                                        if Query1.FieldByName('T_Desenho').AsString = '010' then Desenho:='10';
+                                        if Query1.FieldByName('T_Desenho').AsString = '012' then Desenho:='11';
+                                        if Query1.FieldByName('T_Desenho').AsString = '013' then Desenho:='5';
+                                        if Query1.FieldByName('T_Desenho').AsString = '014' then Desenho:='21';
+                                        if Query1.FieldByName('T_Desenho').AsString = '015' then Desenho:='7';
+                                        if Query1.FieldByName('T_Desenho').AsString = '016' then Desenho:='12';
+                                        if Query1.FieldByName('T_Desenho').AsString = '017' then Desenho:='4';
+                                        if Query1.FieldByName('T_Desenho').AsString = '018' then Desenho:='2';
+                                        if Query1.FieldByName('T_Desenho').AsString = '019' then Desenho:='6';
+                                        if Query1.FieldByName('T_Desenho').AsString = '020' then Desenho:='4';
+                                        if Query1.FieldByName('T_Desenho').AsString = '021' then Desenho:='2';
+                                        if Query1.FieldByName('T_Desenho').AsString = '022' then Desenho:='15';
+                                        if Query1.FieldByName('T_Desenho').AsString = '023' then Desenho:='22';
+                                        if Query1.FieldByName('T_Desenho').AsString = '024' then Desenho:='19';
+                                           QrPneus.FieldByName('Tcp_Desenho').AsString:=Desenho;
+
+                                          QrPneus.FieldByName('Tcp_Fog').AsString:=PneuAtual;
+                                           QrPneus.FieldByName('Tcp_Coligada').AsString:='2';
+                                            QrPneus.FieldByName('Tcp_Valor').AsString:=FormatFloat('####0.00',Query1.FieldByName('T_Valor').AsFloat);
+                                             QrPneus.FieldByName('Tcp_DtAq').AsString:=Query1.FieldByName('T_Data_Aquizicao').AsString;
+                                              QrPneus.FieldByName('Tcp_DtUlAlt').AsString:=DateToStr(Now);
+                                                 QrPneus.FieldByName('Tcp_Status').AsString:='0';
+                                                  QrPneus.FieldByName('Tcp_Serie').AsString:=Query1.FieldByName('T_Numero_Serie').AsString;
+                                                   QrPneus.FieldByName('Tcp_Nf').AsString:=Query1.FieldByName('T_Nota_Fiscal').AsString;
+                                                    QrPneus.FieldByName('Tcp_For').AsString:='3';
+                                                     if Query1.FieldByName('T_Local').AsString = 'T' then
+                                                             LOCALPNEU:='S'
+                                                             ELSE
+                                                             LOCALPNEU:=Query1.FieldByName('T_Local').AsString;
+                                                     QrPneus.FieldByName('Tcp_Local').AsString:=LOCALPNEU;
+                                                       QrPneus.FieldByName('Tcp_Vida').AsString:=Query1.FieldByName('T_Status').AsString;
+                                        if Query1.FieldByName('T_LOCAL').AsString = 'V' then
+                                               CANCEL
+                                               ELSE
+                                               Post;
+                                  end;
+                          end;
+              end;
+        Next;
+        Until eof ;
+    End;
+
+end;
+
+procedure TFormImportaCadPn.FormActivate(Sender: TObject);
+begin
+Query1.Open;
+end;
+
+end.

@@ -1,0 +1,54 @@
+unit UtDadosListaSocorro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, pngimage, ExtCtrls, DB, ADODB, Grids, DBGrids, StdCtrls, ImgList;
+
+type
+  TFormInfoListaSocorro = class(TForm)
+    Panel2: TPanel;
+    Image5: TImage;
+    QrSocorro: TADOQuery;
+    DtSocorro: TDataSource;
+    DBGrid1: TDBGrid;
+    BcoImagens: TImageList;
+    BtSalvar: TButton;
+    Button2: TButton;
+    procedure Button2Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormInfoListaSocorro: TFormInfoListaSocorro;
+
+implementation
+
+uses UnitServerPai;
+
+{$R *.dfm}
+
+procedure TFormInfoListaSocorro.Button2Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TFormInfoListaSocorro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+DtSocorro.DataSet.Close;
+Action:=cafree;
+end;
+
+procedure TFormInfoListaSocorro.Image5Click(Sender: TObject);
+begin
+Close;
+end;
+
+end.

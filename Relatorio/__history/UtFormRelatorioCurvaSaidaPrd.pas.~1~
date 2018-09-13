@@ -1,0 +1,47 @@
+unit UtFormRelatorioCurvaSaidaPrd;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage;
+
+type
+  TFormRelatorioCurvaSaidaProdutos = class(TForm)
+    Panel1: TPanel;
+    Image5: TImage;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Image1: TImage;
+    Label3: TLabel;
+    Label4: TLabel;
+    SpeedButton2: TSpeedButton;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    CbGrupo: TDBLookupComboBox;
+    CbSubGrupo: TDBLookupComboBox;
+    RadioGroup1: TRadioGroup;
+    RadioGroup2: TRadioGroup;
+    procedure Image5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormRelatorioCurvaSaidaProdutos: TFormRelatorioCurvaSaidaProdutos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormRelatorioCurvaSaidaProdutos.Image5Click(Sender: TObject);
+begin
+close;
+end;
+
+end.

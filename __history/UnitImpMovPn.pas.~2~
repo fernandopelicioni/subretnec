@@ -1,0 +1,91 @@
+unit UnitImpMovPn;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, Grids, DBGrids, ADODB, DB;
+
+type
+  TFormImpMovPn = class(TForm)
+    DataSource1: TDataSource;
+    QrMovPneus: TADOQuery;
+    DBGrid1: TDBGrid;
+    BitBtn1: TBitBtn;
+    QrPneu: TADOQuery;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormImpMovPn: TFormImpMovPn;
+
+implementation
+
+uses UnitServerPai;
+
+{$R *.dfm}
+
+procedure TFormImpMovPn.BitBtn1Click(Sender: TObject);
+VAR PNEUATUAL,MOTIVO,veiculo:STRING;
+begin
+With Query1 do
+    Begin
+        Open;
+        First;
+        Repeat
+        if not eof then
+              begin
+                   PneuAtual:=Query1.FieldByName('M_Numero_Fogo').AsString;
+                   MOTIVO:=Query1.FieldByName('M_MOTIVO_SAIDA').AsString;
+//                   if motivo = 'I' then Motivo:='NULL';
+                   veiculo:=Query1.FieldByName('M_veiculo').AsString;
+//                   if veiculo = '001' then veiculo :='00004';
+//                   if veiculo = '002' then veiculo :='00005' ;
+
+                   WITH QrPneu do
+                        begin
+                             Close;
+                               Sql.Clear;
+                                Sql.Add('Select * from tb_pnPneus where Tcp_Coligada = ' + '2');
+                                 Sql.Add('And Tcp_Fog = ' + QuotedStr(PneuAtual));
+                             Open;
+                             if NOT eof then
+                                  begin
+                                  if (query1.FieldByName('M_Veiculo').AsInteger >= 27051) and (query1.FieldByName('M_Veiculo').AsInteger <= 27069) or
+                                     (query1.FieldByName('M_Veiculo').AsInteger >= 27095)  then
+                                      begin
+                                       QrMovPneus.Open;
+                                        QrMovPneus.Insert;
+                                         QrMovPneus.FieldByName('PMOV_PNEU').AsString:=QrPneu.FieldByName('Tcp_Cod').AsString;
+                                          QrMovPneus.FieldByName('PMOV_FOG').AsString:=QrPneu.FieldByName('Tcp_Fog').AsString;
+                                           QrMovPneus.FieldByName('PMOV_Coligada').AsString:=Pai.QrColigadas.FieldByName('Cod_Coligada').AsString;
+                                            QrMovPneus.FieldByName('PMOV_VEI').AsString:=Veiculo;
+                                             QrMovPneus.FieldByName('PMOV_VIDA').AsString:=Query1.FieldByName('M_IDADE_PNEU').AsString;
+                                              QrMovPneus.FieldByName('PMOV_DTENT').AsString:=Query1.FieldByName('M_DATA_ENTRADA').AsSTRING;
+                                               QrMovPneus.FieldByName('PMOV_KMENT').AsString:=Query1.FieldByName('M_KM_ENTRADA').AsString;
+                                                QrMovPneus.FieldByName('PMOV_POSICAO').AsString:=Query1.FieldByName('M_POSICAO').AsString;
+                                                 QrMovPneus.FieldByName('PMOV_DTSAI').AsString:=Query1.FieldByName('M_DATA_SAIDA').AsString;
+                                                  QrMovPneus.FieldByName('PMOV_KMSAI').AsString:=Query1.FieldByName('M_KM_SAIDA').AsString;
+                                                   QrMovPneus.FieldByName('PMOV_KMROD').AsString:=Query1.FieldByName('M_KM_RODADA').AsString;
+                                                    QrMovPneus.FieldByName('PMOV_MOTRET').AsString:=MOTIVO;
+                                                     QrMovPneus.FieldByName('PMOV_HIS').AsString:='Movimento deste pneu foi importado';
+                                                      QrMovPneus.Post;
+                                      end;
+                                   end
+                                 //  else showmessage('Pneu Não encontrado ' + Query1.FieldByName('M_NUMERO_FOGO').AsString);
+                                  end;
+
+              end;
+        Next;
+        Until eof ;
+    End;
+
+
+
+end;
+
+end.

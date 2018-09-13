@@ -1,0 +1,26 @@
+unit UtCroqui;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg;
+
+type
+  TFormCroqui = class(TForm)
+    Image6: TImage;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCroqui: TFormCroqui;
+
+implementation
+
+{$R *.dfm}
+
+end.

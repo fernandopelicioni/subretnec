@@ -1,0 +1,40 @@
+unit UtIniciaSistema;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Data.DB;
+
+type
+  TFormIniciaSistema = class(TForm)
+    Panel1: TPanel;
+    Image1: TImage;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Editusuario: TEdit;
+    EditSenha: TEdit;
+    Label2: TLabel;
+    EditVersao: TLabel;
+    DataSource1: TDataSource;
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormIniciaSistema: TFormIniciaSistema;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormIniciaSistema.FormActivate(Sender: TObject);
+begin
+           Panel2.Caption:='Versão do Produto : ' + EditVersao.caption;
+end;
+
+end.

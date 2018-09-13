@@ -1,0 +1,29 @@
+unit UtDadosListaSocorro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, pngimage, ExtCtrls, DB, ADODB;
+
+type
+  TFormInfoListaSocorro = class(TForm)
+    Panel2: TPanel;
+    Image5: TImage;
+    QrSocorro: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormInfoListaSocorro: TFormInfoListaSocorro;
+
+implementation
+
+uses UnitServerPai;
+
+{$R *.dfm}
+
+end.

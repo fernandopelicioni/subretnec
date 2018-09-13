@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/03/06 08:03:46.000.242,=C:\Genoma\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/03/06 08:06:50.000.621,C:\Genoma\CenterBus\Unit1.pas=C:\Genoma\CenterBus\UnitNotasVersao.pas</Transaction>
+    <Transaction>2015/03/06 08:06:50.000.621,C:\Genoma\CenterBus\Unit1.dfm=C:\Genoma\CenterBus\UnitNotasVersao.dfm</Transaction>
+    <Transaction>2015/06/22 10:12:52.000.689,=C:\Genoma\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/06/22 10:19:55.000.683,C:\Genoma\CenterBus\Unit1.pas=C:\Genoma\CenterBus\UnitCentralComponentes.pas</Transaction>
+    <Transaction>2015/06/22 10:19:55.000.683,C:\Genoma\CenterBus\Unit1.dfm=C:\Genoma\CenterBus\UnitCentralComponentes.dfm</Transaction>
+    <Transaction>2015/10/09 15:26:12.000.840,=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/10/09 15:30:27.000.721,C:\Projetos\CenterBus\UnitOS.dfm=C:\Projetos\CenterBus\Unit1.dfm</Transaction>
+    <Transaction>2015/10/09 15:30:27.000.721,C:\Projetos\CenterBus\UnitOS.pas=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/10/14 12:58:37.000.676,=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/10/14 13:00:55.000.452,C:\Projetos\CenterBus\Unit1.dfm=C:\Projetos\CenterBus\UnitInfoComponentes.dfm</Transaction>
+    <Transaction>2015/10/14 13:00:55.000.452,C:\Projetos\CenterBus\Unit1.pas=C:\Projetos\CenterBus\UnitInfoComponentes.pas</Transaction>
+    <Transaction>2015/10/16 10:57:49.000.253,=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/10/16 10:58:39.000.422,C:\Projetos\CenterBus\Unit1.dfm=C:\Projetos\CenterBus\UnitInfoDetalheComponente.dfm</Transaction>
+    <Transaction>2015/10/16 10:58:39.000.422,C:\Projetos\CenterBus\Unit1.pas=C:\Projetos\CenterBus\UnitInfoDetalheComponente.pas</Transaction>
+    <Transaction>2015/11/30 16:29:31.000.321,=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/11/30 16:31:02.000.524,C:\Projetos\CenterBus\Unit1.pas=C:\Projetos\CenterBus\UnitOsLista.pas</Transaction>
+    <Transaction>2015/11/30 16:31:02.000.524,C:\Projetos\CenterBus\Unit1.dfm=C:\Projetos\CenterBus\UnitOsLista.dfm</Transaction>
+    <Transaction>2015/12/11 10:28:32.000.124,=C:\Projetos\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2015/12/11 10:51:21.000.178,C:\Projetos\CenterBus\Unit1.pas=C:\Projetos\CenterBus\UnitOsSenha.pas</Transaction>
+    <Transaction>2015/12/11 10:51:21.000.178,C:\Projetos\CenterBus\Unit1.dfm=C:\Projetos\CenterBus\UnitOsSenha.dfm</Transaction>
+    <Transaction>2016/04/13 07:56:32.000.499,=C:\Projetos\Sources\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2016/04/13 08:47:11.000.850,C:\Projetos\Sources\CenterBus\UtDadosListaSocorro.pas=C:\Projetos\Sources\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2016/04/13 08:47:11.000.850,C:\Projetos\Sources\CenterBus\UtDadosListaSocorro.dfm=C:\Projetos\Sources\CenterBus\Unit1.dfm</Transaction>
+    <Transaction>2016/04/26 10:21:33.000.735,=C:\Projetos\Sources\CenterBus\Unit1.pas</Transaction>
+    <Transaction>2016/04/30 14:29:55.000.163,C:\Projetos\Sources\CenterBus\Unit1.dfm=C:\Projetos\Sources\CenterBus\UtCentralRelatorios.dfm</Transaction>
+    <Transaction>2016/04/30 14:29:55.000.143,C:\Projetos\Sources\CenterBus\Unit1.pas=C:\Projetos\Sources\CenterBus\UtCentralRelatorios.pas</Transaction>
+  </Transactions>
+</BorlandProject>

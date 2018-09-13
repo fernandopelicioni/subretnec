@@ -1,0 +1,103 @@
+unit UnitOsLista;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, pngimage, ExtCtrls, DB, Grids, DBGrids, Buttons, StdCtrls, DBCtrls;
+
+type
+  TFormOsLista = class(TForm)
+    Panel2: TPanel;
+    Image5: TImage;
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    DtMovOSCompleto: TDataSource;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    procedure Image5Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormOsLista: TFormOsLista;
+
+implementation
+
+uses UnitServerPai, UnitRelatorio, UnitIniciaSistema;
+
+{$R *.dfm}
+
+procedure TFormOsLista.FormActivate(Sender: TObject);
+begin
+       With Pai.QrOSMovCompleto do
+             begin
+                    Close;
+                    Parameters.ParamByName('coligada').Value:=Pai.QrColigadas.FieldByName('cod_coligada').AsString;
+                    Open;
+
+             end;
+end;
+
+procedure TFormOsLista.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Action:=Cafree;
+end;
+
+procedure TFormOsLista.Image5Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TFormOsLista.SpeedButton1Click(Sender: TObject);
+begin
+if (MessageDlg('Confirma?'+#13+#10+''+#13+#10+'Observe que ao fechar, não será mais possivel baixar produtos para esse veículo até que uma nova OS seja aberta!'+#13+#10+''+#13+#10+'Esta operação não pode ser desfeita', mtConfirmation, [mbYes, mbNo], 0) = mrYes) then
+    begin
+      SCREEN.Cursor:=CRHOURGLASS;
+            PAI.VOS_ID:=DtMovOSCompleto.DataSet.FieldByName('Tos_id').Asinteger;
+            PAI.FechaOS;
+            PAI.QrOSMovCompleto.Close;
+            PAI.QrOSMovCompleto.OPEN;
+
+      SCREEN.Cursor:=CRdEFAULT;
+    end;
+
+end;
+
+procedure TFormOsLista.SpeedButton2Click(Sender: TObject);
+begin
+//                         if DtMovOSCompleto.DataSet.FieldByName('Prt').AsDA = '1' then
+//        Imprimi OS apenas se tiver dentro da vigencia
+
+
+                         if DtMovOSCompleto.DataSet.FieldByName('Prt').AsString = '1' then
+                              MessageBox(0, 'Atenção'+#13+#10+''+#13+#10+'Já me consta que essa Ordem de Serviço foi impressa recentemente.'+#13+#10+''+#13+#10+'Só imprima novamente em caso de extravio!', 'OS Já Impressa!', MB_ICONWARNING or MB_OK);
+
+                         PAI.VOS_ID:=DtMovOSCompleto.DataSet.FieldByName('Tos_id').AsInteger;
+                         Pai.MarcaOsPrint;
+                         with Relatorio.QrOsMov do
+                              begin
+                                  CLOSE;
+                                  Parameters.ParamByName('Id').Value:=DtMovOSCompleto.DataSet.FieldByName('Tos_id').AsString;
+                                  open;
+                                  if Not Eof then
+                                        begin
+                                                Relatorio.Projeto.SetParam('Versao',FormIniciaSistema.EditVersao.Caption);
+                                                 Relatorio.Projeto.ExecuteReport('Rv_os');
+                                        end
+                                        else
+                                        MessageBox(0, 'Não existe OS pendente para impressão', 'Não há dados', MB_ICONINFORMATION or MB_OK);
+
+
+                              end;
+
+end;
+
+end.

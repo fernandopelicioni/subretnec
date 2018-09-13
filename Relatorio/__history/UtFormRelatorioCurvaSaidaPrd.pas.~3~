@@ -1,0 +1,105 @@
+unit UtFormRelatorioCurvaSaidaPrd;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TFormRelatorioCurvaSaidaProdutos = class(TForm)
+    Panel1: TPanel;
+    Image5: TImage;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Image1: TImage;
+    Label3: TLabel;
+    Label4: TLabel;
+    SpeedButton2: TSpeedButton;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    CbGrupo: TDBLookupComboBox;
+    CbSubGrupo: TDBLookupComboBox;
+    DTSUBGRUPO: TDataSource;
+    QrSubGrupo: TFDQuery;
+    DTGRUPOS: TDataSource;
+    QrGrupos: TFDQuery;
+    procedure Image5Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormRelatorioCurvaSaidaProdutos: TFormRelatorioCurvaSaidaProdutos;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitServerPai, UtRelatorio, UnitIniciaSistema;
+
+procedure TFormRelatorioCurvaSaidaProdutos.Image5Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFormRelatorioCurvaSaidaProdutos.SpeedButton1Click(Sender: TObject);
+VAR ORIENTACAO, tipo, GI, GF, SI, SF :STRING;
+
+begin
+                WITH Relatorio2.QrCurvaSaiPrd DO
+                     BEGIN
+                             CLOSE;
+                             ParamByName('COLIGADA').Value := PAI.QrColigadas.FieldByName('COD_COLIGADA').AsString;
+                             ParamByName('INICIO').Value := DATETOSTR(DateTimePicker1.Date);
+                             ParamByName('FIM').Value := DATETOSTR(DateTimePicker2.Date);
+
+
+                             // CHECA SELEÇÃO DO GRUPO
+                             GI:='001';
+                             GF:='016';
+                             SI:='001.001';
+                             SF:='016.999';
+                             if CBGRUPO.KeyValue <> NULL then
+                                   BEGIN
+                                       GI:= CBGRUPO.KeyValue;
+                                       GF:= CBGRUPO.KeyValue;
+                                   END;
+                             if CBSUBGRUPO.KeyValue <> NULL then
+                                   BEGIN
+                                       SI:= CBSUBGRUPO.KeyValue;
+                                       SF:= CBSUBGRUPO.KeyValue;
+                                   END;
+                             ParamByName('GRUPOI').Value := GI;
+                             ParamByName('GRUPOF').Value := GF;
+                             ParamByName('SUBI').Value := SI;
+                             ParamByName('SUBF').Value := SF;
+                             OPEN;
+                             //MEMO1.Text:=SQL.Text;
+                             if NOT EOF then
+                                        begin
+                                            Relatorio2.FtProdGrupoSubSintetico.Variables['VERSAO']:=QUOTEDSTR(FORMINICIASISTEMA.EDITVERSAO.CAPTION);
+                                            Relatorio2.FtProdGrupoSubSintetico.Variables['titulo']:=QUOTEDSTR(ORIENTACAO);
+                                            Relatorio2.FtProdGrupoSubSintetico.Variables['DataI']:=QUOTEDSTR(DateToStr(DateTimePicker1.Date));
+                                            Relatorio2.FtProdGrupoSubSintetico.Variables['DataF']:=QUOTEDSTR(DateToStr(DateTimePicker2.Date));
+                                            Relatorio2.FtProdGrupoSubSintetico.ShowReport();
+                                        end
+                                        ELSE
+                                            MessageBox(0, 'Redefina sua consulta e tente novamente!', 'Não há dados', MB_ICONINFORMATION or MB_OK);
+                                        close;
+
+                     END;
+
+
+end;
+
+end.

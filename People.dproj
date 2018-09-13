@@ -1,0 +1,279 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{78DCF0CB-9FE6-474A-821B-C416D05D2F17}</ProjectGuid>
+			<ProjectVersion>12.0</ProjectVersion>
+			<MainSource>People.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Release</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave77VCL;bdertl;rtl;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapServer;DBXInterBaseDriver;DBXMySQLDriver;dbxcds;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver</DCC_UsePackage>
+			<DCC_DependencyCheckOutputName>People.exe</DCC_DependencyCheckOutputName>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_E>false</DCC_E>
+			<DCC_N>false</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="People.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="UnitTelaPrincipal.pas">
+				<Form>FormEntrada</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroClinicas.pas">
+				<Form>FormCadastroClinicas</Form>
+			</DCCReference>
+			<DCCReference Include="UnitMae.pas">
+				<Form>Mae</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroLaboratorios.pas">
+				<Form>FormCadastroLaboratorios</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroTipoAtendimentoMedico.pas">
+				<Form>FormCadastroTipoAtendimentoMedico</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroTipoExames.pas">
+				<Form>FormCadastroTipoExames</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroMedico.pas">
+				<Form>FormCadastroMedico</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroProfissional.pas">
+				<Form>FormCadastroProfissional</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroFuncoes.pas">
+				<Form>FormCadastroFuncao</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastroDepto.pas">
+				<Form>FormCadastroDepto</Form>
+			</DCCReference>
+			<DCCReference Include="UnitIniciaSistema.pas">
+				<Form>FormIniciaSistema</Form>
+			</DCCReference>
+			<DCCReference Include="UnitConsultaCandidatos.pas">
+				<Form>FormConsultaCandidatos</Form>
+			</DCCReference>
+			<DCCReference Include="UnitConsultaProfissionais.pas">
+				<Form>FormConsultaProfissionais</Form>
+			</DCCReference>
+			<DCCReference Include="UnitGeraExameMedico.pas">
+				<Form>FormGeraExameMedico</Form>
+			</DCCReference>
+			<DCCReference Include="RelatorioEmiteExame.pas">
+				<Form>FormGeraRelatorios</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastraAtestado.pas">
+				<Form>FormCadastraAtestado</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaAtestado.pas">
+				<Form>FormLancaAtestado</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaPeriodico.pas">
+				<Form>FormLancaPeriodico</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaFichaClinica.pas">
+				<Form>FormLancaFichaClinica</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastraAdvertencia.pas">
+				<Form>FormCadastraAdvertencia</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastraMotivoAdvertencias.pas">
+				<Form>FormCadastraHistoricoAdvertencia</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaAdvertencia.pas">
+				<Form>FormLancaAdvertencias</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaSuspensoes.pas">
+				<Form>FormLancaSuspensoes</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaFalta.pas">
+				<Form>FormLancaFalta</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastraOcorrencia.pas">
+				<Form>FormCadastraOcorrencias</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaReclamacao.pas">
+				<Form>FormLancaReclamacao</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaDebito.pas">
+				<Form>FormLancaDebito</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaAvaria.pas">
+				<Form>FormLancaAvaria</Form>
+			</DCCReference>
+			<DCCReference Include="UnitAtendimentoPersonalizado.pas">
+				<Form>FormCadastraAtendimentoPersonalizado</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaElogio.pas">
+				<Form>FormLancaElogio</Form>
+			</DCCReference>
+			<DCCReference Include="UnitlancaVisita.pas">
+				<Form>FormLancaVisita</Form>
+			</DCCReference>
+			<DCCReference Include="UnitAniversario.pas">
+				<Form>FormAniversariantes</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCNH.pas">
+				<Form>FormCNH</Form>
+			</DCCReference>
+			<DCCReference Include="UnitMediaAtestado.pas">
+				<Form>FormMediaAtestado</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaPro.pas">
+				<Form>FormImportaPro</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaEventos.pas">
+				<Form>FormLancaEventos</Form>
+			</DCCReference>
+			<DCCReference Include="UnitConvoca.pas">
+				<Form>FormConvoca</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaEmprestimo.pas">
+				<Form>FormLancaEmprestimo</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaCarreira.pas">
+				<Form>FormLancaCarreira</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaMultas.pas">
+				<Form>FormLancaMulta</Form>
+			</DCCReference>
+			<DCCReference Include="UnitCadastraCid.pas">
+				<Form>FormCadastraCid</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaADV.pas">
+				<Form>FormImportaADV</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaFalta.pas">
+				<Form>FormImportaFalta</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaAtestado.pas">
+				<Form>FormImportaAtestado</Form>
+			</DCCReference>
+			<DCCReference Include="UnitFichaFuncional.pas">
+				<Form>FormFichaFuncional</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaCid.pas">
+				<Form>FormImportaCid</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaAcidentes.pas">
+				<Form>FormLancaAcidentes</Form>
+			</DCCReference>
+			<DCCReference Include="UnitLancaAutos.pas">
+				<Form>FormLancaAutos</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaRecl.pas">
+				<Form>FormImportaRecl</Form>
+			</DCCReference>
+			<DCCReference Include="UniImportaSuspensoes.pas">
+				<Form>FormImportaSus</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaAvarias.pas">
+				<Form>FormImportaAvarias</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaEventos.pas">
+				<Form>FormImportaEventos</Form>
+			</DCCReference>
+			<DCCReference Include="UnitImportaAcidentes.pas">
+				<Form>FormImportaAcidente</Form>
+			</DCCReference>
+			<DCCReference Include="UnitSac.pas">
+				<Form>FormSac</Form>
+			</DCCReference>
+			<DCCReference Include="UnitRelatorioPro.pas">
+				<Form>FormRelatorioPro</Form>
+			</DCCReference>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
+						<VersionInfo Name="MajorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">71</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1046</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">0.0.0.71</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Source>
+						<Source Name="MainSource">People.dpr</Source>
+					</Source>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwebsnap140.bpl">Embarcadero WebSnap Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwbm140.bpl">Embarcadero InternetExpress Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclnet140.bpl">Embarcadero Internet Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclsoap140.bpl">Embarcadero SOAP Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<ModelSupport>False</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

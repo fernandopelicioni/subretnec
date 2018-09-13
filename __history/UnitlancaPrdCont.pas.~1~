@@ -1,0 +1,214 @@
+unit UnitlancaPrdCont;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, ADODB, StdCtrls, Buttons, Mask, ComCtrls, DBCtrls, Grids, DBGrids,
+  pngimage, ExtCtrls, DBCGrids;
+
+type
+  TFormLancaPrdCont = class(TForm)
+    PageControl1: TPageControl;
+    QrPrd: TADOQuery;
+    DtColigada: TDataSource;
+    DtPrd: TDataSource;
+    QrPrdIDPRD: TIntegerField;
+    QrPrdCodigoPrd: TStringField;
+    QrPrdNomefantasia: TStringField;
+    QrPrdPrdsubTro: TWideStringField;
+    TabSheet3: TTabSheet;
+    DBCtrlGrid1: TDBCtrlGrid;
+    DBText4: TDBText;
+    DBText5: TDBText;
+    DBText6: TDBText;
+    DBCheckBox3: TDBCheckBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure SairClick(Sender: TObject);
+    procedure EDitPrdKeyPress(Sender: TObject; var Key: Char);
+    procedure ComboBox1KeyPress(Sender: TObject; var Key: Char);
+    procedure Image5Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid1ColExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormLancaPrdCont: TFormLancaPrdCont;
+
+implementation
+
+uses UnitServerPai, UnitBuscaPrd;
+
+{$R *.dfm}
+
+procedure TFormLancaPrdCont.ComboBox1KeyPress(Sender: TObject; var Key: Char);
+begin
+if key = #13 then
+begin
+  key:=#0;
+  Salvar.SetFocus;
+end;
+end;
+
+procedure TFormLancaPrdCont.DBGrid1ColExit(Sender: TObject);
+begin
+if DBGrid1.SelectedField.FieldName = DBCheckBox1.DataField then
+
+    DBCheckBox1.Visible := False
+
+end;
+
+procedure TFormLancaPrdCont.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+const IsChecked : array[Boolean] of Integer =
+
+      (DFCS_BUTTONCHECK, DFCS_BUTTONCHECK or DFCS_CHECKED);
+
+var
+
+  DrawState: Integer;
+
+  DrawRect: TRect;
+begin
+
+  if (gdFocused in State) then
+
+  begin
+
+    if (Column.Field.FieldName = DBCheckBox1.DataField) then
+
+    begin
+
+     DBCheckBox1.Left := Rect.Left + DBGrid1.Left + 2;
+
+     DBCheckBox1.Top := Rect.Top + DBGrid1.top + 2;
+
+     DBCheckBox1.Width := Rect.Right - Rect.Left;
+
+     DBCheckBox1.Height := Rect.Bottom - Rect.Top;
+
+     DBCheckBox1.Visible := True;
+
+    end
+
+  end
+
+  else
+
+  begin
+
+    if (Column.Field.FieldName = DBCheckBox1.DataField) then
+
+    begin
+
+      DrawRect:=Rect;
+
+      InflateRect(DrawRect,-1,-1);
+
+      DrawState := ISChecked[Column.Field.AsBoolean];
+
+      DBGrid1.Canvas.FillRect(Rect);
+
+      DrawFrameControl(DBGrid1.Canvas.Handle, DrawRect,
+
+        DFC_BUTTON, DrawState);
+
+    end;
+
+  end;
+
+
+
+
+
+
+
+end;
+
+procedure TFormLancaPrdCont.EDitPrdKeyPress(Sender: TObject; var Key: Char);
+begin
+if key = #13 then
+begin
+  key:=#0;
+//  peedButton1.Click;
+  end;
+end;
+
+procedure TFormLancaPrdCont.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+QrPrd.Close;
+Action:=cafree;
+end;
+
+procedure TFormLancaPrdCont.FormCreate(Sender: TObject);
+begin
+DBCheckBox1.DataSource := DtPrd;
+
+ DBCheckBox1.DataField := 'Winner';
+
+ DBCheckBox1.Visible := False;
+
+ DBCheckBox1.Color := DBGrid1.Color;
+
+ DBCheckBox1.Caption := '';
+
+ //explicado mais adiante no artigo
+
+ DBCheckBox1.ValueChecked := 'Yes a Winner!';
+
+ DBCheckBox1.ValueUnChecked := 'Not this time.';
+
+
+
+
+
+
+end;
+
+procedure TFormLancaPrdCont.Image1Click(Sender: TObject);
+begin
+DtPrd.DataSet.First;
+end;
+
+procedure TFormLancaPrdCont.Image2Click(Sender: TObject);
+begin
+DtPrd.DataSet.Next;
+end;
+
+procedure TFormLancaPrdCont.Image3Click(Sender: TObject);
+begin
+DtPrd.DataSet.last;
+end;
+
+procedure TFormLancaPrdCont.Image4Click(Sender: TObject);
+begin
+DtPrd.DataSet.prior;
+end;
+
+procedure TFormLancaPrdCont.Image5Click(Sender: TObject);
+begin
+Application.CreateForm(TFormBuscaPrd,FormBuscaPrd);
+FormBuscaPrd.ShowModal;
+end;
+
+procedure TFormLancaPrdCont.SairClick(Sender: TObject);
+begin
+Close;
+end;
+
+end.
